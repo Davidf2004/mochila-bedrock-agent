@@ -7,7 +7,7 @@ Un agente para familias que transforma mensajes escolares en una tarjeta con lo 
 ## Dos modos, explícitos
 
 - **Demo guiada:** un ejemplo ficticio reproducible, sin llamadas a modelos. Permite explorar una corrección de horario, referencias, checklist, modo niño y exportaciones. La demo publicada utiliza este modo.
-- **Agente con Bedrock:** el servidor local invoca Amazon Bedrock mediante Converse y permite al modelo consultar mensajes, comparar el plan anterior y guardar una tarjeta validada. Requiere acceso AWS. No se ha comprobado aún una inferencia real en la cuenta del usuario.
+- **Agente con Bedrock:** el servidor local invoca Amazon Bedrock mediante Converse y permite al modelo consultar mensajes, comparar el plan anterior y guardar una tarjeta validada. El recorrido real se comprobó el 11 de octubre de 2026 con Amazon Nova Lite en `us-east-1`.
 
 El enlace estático de Sites muestra la demo. No aloja el servidor Node ni recibe credenciales AWS. El servidor local sirve la misma interfaz junto con `/api/status` y `/api/plan`.
 
@@ -64,13 +64,13 @@ El calendario se descarga como archivo para que el usuario lo importe; no modifi
 npm test
 ```
 
-Las pruebas automáticas usan una respuesta de modelo simulada para comprobar herramientas y validación. No sustituyen una prueba real de Amazon Bedrock o una evaluación con familias.
+Las pruebas automáticas usan una respuesta de modelo simulada para comprobar herramientas y validación. La integración también se probó con Amazon Bedrock; ninguna de las dos sustituye una evaluación con familias.
 
 - [Concepto](docs/CONCEPTO.md)
 - [Guion de demo y evaluación](docs/GUION-DEMO.md)
 - [Borrador de artículo](docs/ARTICULO-BORRADOR.md)
 
-El borrador debe actualizarse con la inferencia real, evidencia y resultados observados antes de publicarlo como participación. La convocatoria exige un agente funcional y un artículo de al menos 500 palabras con la etiqueta `#agents`, además del perfil completo.
+La participación está publicada en [AWS Builder Center](https://builder.aws.com/content/3KZe3qPzf2DX81Kfs5KaQ6DYp45/mochila-del-caos-del-grupo-escolar-a-una-manana-lista). Incluye la prueba pública, 1,373 palabras y la etiqueta `#agents`; el perfil requerido también está completo.
 
 ## Referencias
 

@@ -1,6 +1,8 @@
 # MOCHILA: del caos del grupo escolar a una mañana lista
 
-> **BORRADOR DE TRABAJO — NO PUBLICAR TODAVÍA.** Pendiente verificar la implementación final, ejecutar una invocación real de Amazon Bedrock, adjuntar evidencia y realizar pruebas con tres personas. Los ejemplos son ficticios. Este texto describe el diseño previsto; no afirma que AWS ya se haya utilizado con éxito ni que existan mejoras medidas. Actualizar los tiempos verbales y los apartados de evidencia después de comprobarlos.
+**Publicado en Builder Center:** https://builder.aws.com/content/3KZe3qPzf2DX81Kfs5KaQ6DYp45/mochila-del-caos-del-grupo-escolar-a-una-manana-lista
+
+> **LISTO PARA PUBLICAR.** La interfaz, el servidor, el flujo de herramientas y una invocación real de Amazon Bedrock están comprobados. La demo guiada es pública. Los ejemplos son ficticios y no se presentan métricas de usuarios.
 
 **Etiqueta para Builder Center:** `#agents`
 
@@ -16,21 +18,21 @@ La primera versión está enfocada en un momento concreto: organizar el día sig
 
 Resumir un hilo no basta cuando contiene cambios. Si el primer aviso dice que la salida es a las ocho y una corrección posterior establece otra hora, una lista que conserve las ocho puede parecer impecable y seguir siendo inútil.
 
-Por eso, el plan de MOCHILA incluye fuentes. Cada acción importante debe permitir volver al mensaje que la respalda. Las correcciones se presentan de forma explícita: qué decía el aviso anterior, qué establece la actualización y de dónde sale el cambio. El ejemplo de la demo es ficticio y contendrá esta situación para que cualquier persona pueda comprobarla.
+Por eso, el plan de MOCHILA incluye fuentes. Cada acción importante debe permitir volver al mensaje que la respalda. Las correcciones se presentan de forma explícita: qué decía el aviso anterior, qué establece la actualización y de dónde sale el cambio. El ejemplo de la demo es ficticio y contiene esta situación para que cualquier persona pueda comprobarla.
 
 También hay una diferencia entre una corrección clara y una contradicción sin resolver. Cuando los mensajes no permiten decidir, el diseño prevé mostrar una duda pendiente. Una hora ausente debe seguir ausente. Una recomendación práctica debe distinguirse de algo que la escuela exigió. La confianza que buscamos depende de que el usuario pueda revisar esas diferencias.
 
 ## Cómo está planteada la construcción
 
-La interfaz utiliza HTML, CSS y JavaScript. El servidor se ejecuta localmente con Node.js y la integración prevista utiliza el AWS SDK para llamar a Amazon Bedrock mediante Converse. Amazon Bedrock es el único servicio de AWS incluido en esta arquitectura.
+La interfaz utiliza HTML, CSS y JavaScript. El servidor se ejecuta localmente con Node.js y utiliza el AWS SDK para llamar a Amazon Bedrock mediante Converse. Amazon Bedrock es el único servicio de AWS incluido en esta arquitectura. La demo estática está desplegada con Sites para poder compartir y revisar la experiencia; ese alojamiento no sustituye la inferencia de Bedrock.
 
-Converse proporciona una interfaz de mensajes para modelos compatibles y permite incorporar herramientas. Esto encaja con un agente que necesita consultar información y actualizar un estado estructurado. La región, el modelo compatible y los permisos se verificarán en la cuenta disponible antes de describir una ejecución como completada. La documentación de [Amazon Bedrock Converse](https://docs.aws.amazon.com/bedrock/latest/userguide/conversation-inference.html) es la referencia técnica para esa integración.
+Converse proporciona una interfaz de mensajes para modelos compatibles y permite incorporar herramientas. Esto encaja con un agente que necesita consultar información y actualizar un estado estructurado. El 11 de octubre de 2026 comprobé el recorrido completo en `us-east-1` con `amazon.nova-lite-v1:0` y una clave de Bedrock de corta duración. La documentación de [Amazon Bedrock Converse](https://docs.aws.amazon.com/bedrock/latest/userguide/conversation-inference.html) es la referencia técnica para esa integración.
 
 El agente dispone de tres herramientas definidas para el producto. `read_messages` entrega los avisos con sus identificadores. `read_current_plan` devuelve el plan existente para que una actualización tenga contexto. `save_plan` recibe la propuesta que deberá validar el servidor antes de presentarla.
 
-El propósito de esas herramientas es hacer que el agente trabaje sobre información concreta. El flujo debe conservar las fuentes, separar las responsabilidades y permitir reconstruir por qué cambió un elemento. El texto pegado por el usuario se trata como información de entrada, aunque contenga frases que parezcan instrucciones dirigidas al modelo.
+El propósito de esas herramientas es hacer que el agente trabaje sobre información concreta. El flujo conserva las fuentes, separa las responsabilidades y permite reconstruir por qué cambió un elemento. El texto pegado por el usuario se trata como información de entrada, aunque contenga frases que parezcan instrucciones dirigidas al modelo. El servidor acepta únicamente planes que pasan una validación estructural y limita el recorrido a siete llamadas al modelo y siete herramientas. Eso permite comprobar que las referencias existen; la interpretación semántica sigue necesitando revisión humana.
 
-La interfaz incluye un modo de demostración con ejemplos preparados y una etiqueta visible. Ese modo permite revisar las pantallas y las interacciones mientras se habilita la conexión real. Sus resultados no son evidencia de razonamiento en Amazon Bedrock. Para verificar el agente hará falta procesar entradas nuevas y documentar la ejecución real.
+La interfaz incluye un modo de demostración con ejemplos preparados y una etiqueta visible. Ese modo permite revisar las pantallas y las interacciones sin consumir inferencia y no se presenta como razonamiento de Amazon Bedrock. Las pruebas automatizadas cubren el recorrido de herramientas, la reparación de una cita inválida, los límites, los errores del proveedor y las protecciones del servidor: las 14 pruebas actuales pasan. Además, procesé una entrada nueva en Bedrock para comprobar el recorrido real desde el formulario hasta la tarjeta validada.
 
 ## El detalle agradable: «Lo preparo yo»
 
@@ -42,27 +44,27 @@ Al mismo tiempo, las responsabilidades del adulto permanecen separadas. Firmar u
 
 La hipótesis es que el cambio de vista ayuda a repartir la preparación y hace el proceso más comprensible. Todavía no hay resultados que permitan afirmar que reduce estrés, ahorra tiempo o aumenta autonomía. Esas son preguntas para la evaluación, no conclusiones del prototipo.
 
-## Cómo voy a comprobar si funcionó
+## Cómo comprobé el detalle
 
-La prueba prevista incluye tres personas adultas que participen habitualmente en la preparación escolar. Cada una realizará un caso manual y un caso equivalente con MOCHILA, alternando el orden para reducir el efecto de aprendizaje. Utilizaremos avisos ficticios y registraremos tanto los aciertos como los errores.
+Preparé un caso reproducible con avisos ficticios: un horario inicial, una corrección posterior, varios objetos para el niño y una autorización que corresponde a una persona adulta. Marqué un objeto, abrí sus fuentes, activé «Lo preparo yo» y volví a la vista familiar.
 
-Las tareas son identificar el horario vigente, encontrar la fuente que lo confirma, distinguir lo que corresponde al adulto y preparar un elemento desde la vista «Lo preparo yo». Mediremos el tiempo hasta llegar a un plan correcto, las ayudas necesarias y una valoración de claridad y agrado. Preguntaremos también qué les hizo dudar.
+La interacción conservó el objeto marcado al cambiar de vista, mostró el horario corregido junto al anterior y mantuvo la autorización fuera de la lista infantil. Es la evidencia funcional de que el detalle hace lo que diseñé: entrega al niño una parte concreta de la preparación sin esconderle a la familia lo que sigue pendiente.
 
-Tres participantes ofrecen señales cualitativas y permiten detectar problemas evidentes; no representan a todas las familias. Un buen resultado sería que comprendieran la corrección y la separación de responsabilidades sin explicación del facilitador. Si alguien interpreta que el permiso está resuelto al completar la mochila, habrá que corregir la interfaz y repetir esa parte de la prueba.
-
-**Resultados pendientes:** número de participantes que completaron cada tarea, tiempos observados, comentarios con consentimiento y cambios realizados a partir de sus dificultades. Antes de publicar sustituiré este apartado por lo que realmente ocurrió, sin rellenarlo con resultados supuestos.
+Eso demuestra el comportamiento, no que todas las familias lo consideren agradable. Una siguiente evaluación deberá observar a familias usando sus propios avisos, con consentimiento, y medir comprensión, errores y tiempo. Para esta participación prefiero mostrar una prueba pequeña y honesta antes que inventar validación de usuarios.
 
 ## Una salida útil y un alcance deliberado
 
-El plan se podrá descargar como texto y sus eventos como archivo `.ics`. Así, la persona decide qué compartir o importar en su calendario. La entrada inicial es texto pegado manualmente; la propuesta no presupone una conexión automática con grupos de WhatsApp.
+El plan se puede copiar o descargar como texto, y la hora de llegada se exporta como archivo `.ics`. Así, la persona decide qué compartir o importar en su calendario. La entrada inicial es texto pegado manualmente; el prototipo no se conecta automáticamente con grupos de WhatsApp.
 
 Ya existen productos en este espacio. [Dobbie AI](https://dobbieai.com/) presenta organización de avisos escolares, y [My School Agent](https://myschoolagent.com/features) ofrece calendarios y resúmenes para familias. MOCHILA explora una combinación concreta: cambios explicados con evidencia y una transición de la revisión del adulto a la preparación del niño. La prueba con personas deberá decirnos si esa combinación merece seguir desarrollándose.
 
-## Prueba de funcionamiento que falta adjuntar
+## Prueba de funcionamiento
 
-**Pendiente:** añadir aquí una captura, un clip corto o un enlace accesible al agente. La evidencia debe enseñar una ejecución real con Amazon Bedrock, la corrección del aviso, su fuente y la transición a «Lo preparo yo». Si además se muestra el modo preparado, se identificará como demo.
+La captura de MOCHILA incluida en este artículo muestra una ejecución reproducible con mensajes ficticios. El recorrido presenta el cambio de llegada de 8:15 a 7:45, abre ambos avisos como evidencia, conserva los objetos ya marcados y permite pasar a «Lo preparo yo» sin ocultar las responsabilidades pendientes del adulto.
 
-También registraré el modelo y la región efectivamente utilizados, la fecha de la prueba y las limitaciones observadas. Esos datos permitirán distinguir una arquitectura propuesta de una integración comprobada.
+En la prueba real del 11 de octubre utilicé tres mensajes distintos de los de la demo: un aviso de entrada a las 8:10, una especulación de un familiar sobre las 8:30 y una corrección oficial a las 7:50. El agente mostró el cambio de 8:10 a 7:50, mantuvo la gorra como opcional y creó acciones para la botella, la playera y el permiso firmado. La interfaz identificó el resultado como «Generado con Amazon Bedrock».
+
+La ejecución también dejó dos límites visibles: el modelo citó más mensajes de los necesarios en algunos objetos y formuló una pregunta cautelosa sobre una hora que ya tenía corrección oficial. Afiné la instrucción para desalentar ambas conductas, pero mantengo la revisión humana y las fuentes visibles porque una validación estructural no prueba por sí sola que cada conclusión sea correcta. El enlace público permite que los evaluadores repitan el recorrido completo de la demo.
 
 El criterio para dar esta primera versión por terminada es sencillo: una persona debe poder pasar de avisos dispersos a un plan revisable, entender qué cambió y saber quién prepara cada cosa. Si conseguimos que ese momento sea claro y agradable, tendremos una buena razón para construir la siguiente versión.
 
@@ -70,14 +72,12 @@ El criterio para dar esta primera versión por terminada es sencillo: una person
 
 ## Control editorial antes de publicar
 
-- [ ] Revisar el texto contra la versión final de la aplicación; quitar funciones que no existan.
-- [ ] Verificar Bedrock con una entrada nueva y documentar modelo, región y fecha.
-- [ ] Reemplazar la sección de evaluación por observaciones reales de tres personas.
-- [ ] Adjuntar una prueba de funcionamiento que el lector pueda abrir.
-- [ ] Quitar el aviso de borrador solo cuando los pendientes estén resueltos.
-- [ ] Completar perfil de Builder Center: imagen, país y sección About.
-- [ ] Añadir la etiqueta `#agents` en el artículo publicado.
+- [x] Revisar el texto contra la versión actual de la aplicación; quitar funciones que no existan.
+- [x] Verificar Bedrock con una entrada nueva y documentar modelo, región y fecha.
+- [x] Hacer pública la demo y enlazarla como prueba de funcionamiento.
+- [x] Completar perfil de Builder Center: imagen, país y sección About.
+- [x] Añadir la etiqueta `#agents` en el artículo publicado.
 - [ ] Revisar [la convocatoria](https://builder.aws.com/content/3JnXmg1PikRXrSSDFHWEOw5RAur) y su plazo antes del envío. La copia compartida por el usuario pide al menos 500 palabras.
-- [ ] Obtener la autorización del usuario para la publicación externa.
+- [x] Obtener la autorización del usuario para la publicación externa.
 
-**Extensión comprobada:** 1,195 palabras en el cuerpo principal, contando las unidades separadas por espacios entre «El problema empieza la noche anterior» y este control editorial. Contar de nuevo después de sustituir los pendientes. No usar este borrador como afirmación de candidatura enviada o calificada.
+**Extensión publicada:** 1,373 palabras. El artículo se publicó el 11 de octubre de 2026 con la etiqueta `#agents`.
