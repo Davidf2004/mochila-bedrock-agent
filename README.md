@@ -9,7 +9,7 @@ Un agente para familias que transforma mensajes escolares en una tarjeta con lo 
 - **Demo guiada:** un ejemplo ficticio reproducible, sin llamadas a modelos. Permite explorar una corrección de horario, referencias, checklist, modo niño y exportaciones. La demo publicada utiliza este modo.
 - **Agente con Bedrock:** el servidor local invoca Amazon Bedrock mediante Converse y permite al modelo consultar mensajes, comparar el plan anterior y guardar una tarjeta validada. El recorrido real se comprobó el 11 de octubre de 2026 con Amazon Nova Lite en `us-east-1`.
 
-El enlace estático de Sites muestra la demo. No aloja el servidor Node ni recibe credenciales AWS. El servidor local sirve la misma interfaz junto con `/api/status` y `/api/plan`.
+La [demo pública en Netlify](https://mochila-bedrock-agent.netlify.app) muestra el recorrido guiado. No aloja el servidor Node ni recibe credenciales AWS. El servidor local sirve la misma interfaz junto con `/api/status` y `/api/plan`.
 
 ## Ejecutar localmente
 
@@ -68,7 +68,7 @@ Las pruebas automáticas usan una respuesta de modelo simulada para comprobar he
 
 - [Concepto](docs/CONCEPTO.md)
 - [Guion de demo y evaluación](docs/GUION-DEMO.md)
-- [Borrador de artículo](docs/ARTICULO-BORRADOR.md)
+- [Artículo final](docs/ARTICULO-FINAL.md)
 
 La participación está publicada en [AWS Builder Center](https://builder.aws.com/content/3KZe3qPzf2DX81Kfs5KaQ6DYp45/mochila-del-caos-del-grupo-escolar-a-una-manana-lista). Incluye la prueba pública, 1,373 palabras y la etiqueta `#agents`; el perfil requerido también está completo.
 
