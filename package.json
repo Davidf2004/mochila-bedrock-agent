@@ -1,0 +1,15 @@
+{
+  "name": "mochila-agent",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Pega el caos del grupo. Deja lista la mañana.",
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "start": "node --env-file-if-exists=.env server.mjs",
+    "test": "node --test test/*.test.mjs"
+  },
+  "dependencies": {
+    "@aws-sdk/client-bedrock-runtime": "^3.899.0"
+  }
+}

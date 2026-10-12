@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#123d3b">
+  <meta name="description" content="De los mensajes del grupo escolar a una mochila lista. Una lista clara, cada dato con su fuente y las correcciones a la vista.">
+  <title>MOCHILA — Deja lista la mañana</title>
+  <link rel="icon" type="image/svg+xml" href="./favicon.svg">
+  <link rel="stylesheet" href="./styles.css">
+  <script type="module" src="./app.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#workspace">Ir a preparar la mochila</a>
+  <div class="page-shell">
+    <header class="site-header">
+      <a class="brand" href="./" aria-label="MOCHILA, inicio">
+        <svg viewBox="0 0 32 36" fill="none" aria-hidden="true"><path d="M11 8V6a5 5 0 0 1 10 0v2M7 14v17m18-17v17" stroke="currentColor" stroke-width="2.3"/><rect x="5" y="8" width="22" height="26" rx="9" fill="currentColor"/><path d="M10 21h12v9H10z" stroke="#f8f5ee" stroke-width="1.7" stroke-linejoin="round"/><path d="M12 15h8" stroke="#f8f5ee" stroke-width="1.7" stroke-linecap="round"/></svg>
+        <span>mochila<span class="brand-dot">.</span></span>
+      </a>
+      <div class="header-right"><span class="brand-purpose">Un poquito menos de carga mental.</span><span id="connection-status" class="connection-status"><span class="status-dot"></span>Comprobando conexión</span></div>
+    </header>
+
+    <main>
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <p class="eyebrow"><span></span> PARA LAS NOCHES ANTES DE CLASES</p>
+          <h1 id="hero-title">Pega el caos del grupo.<br>Deja lista <em>la mañana.</em></h1>
+          <p class="hero-description">Entre veinte mensajes, alguien cambió la hora.<br class="desktop-break"> Aquí tienes qué llevar, qué preparar y de dónde salió cada cosa.</p>
+          <div class="hero-promise"><span class="little-check">✓</span> Cada dato con su fuente <span class="promise-divider">/</span> Las dudas, sin inventar</div>
+        </div>
+        <div class="hero-art" aria-hidden="true">
+          <div class="art-orbit"></div>
+          <div class="floating-note note-one"><span class="note-icon">↳</span> “¿Era a las 8:30?”</div>
+          <svg class="backpack-art" viewBox="0 0 330 310" fill="none">
+            <ellipse cx="165" cy="276" rx="108" ry="14" fill="#173E3A" opacity=".07"/>
+            <path d="M127 99c-40-17-52 26-43 144M202 97c43-14 54 31 43 145" stroke="#B3BBA8" stroke-width="17" stroke-linecap="round"/>
+            <path d="M139 63V47c0-24 43-24 43 0v16" stroke="#AE573C" stroke-width="14" stroke-linecap="round"/>
+            <path d="m216 105 18-37 19 9-19 40" fill="#EADAAE"/>
+            <path d="m235 68 5-10 14 7-1 12" fill="#233F3A"/>
+            <rect x="83" y="57" width="156" height="208" rx="53" fill="#CC7453"/>
+            <path d="M84 109c0-32 19-52 52-52h54c33 0 49 22 49 52v20H84v-20Z" fill="#D48260"/>
+            <path d="M108 105c4-16 17-24 38-24h35c21 0 34 8 38 24" stroke="#AC573E" stroke-width="3" stroke-linecap="round"/>
+            <path d="M112 106v14" stroke="#F9EAD2" stroke-width="4" stroke-linecap="round"/>
+            <path d="M103 174h115v48c0 15-12 27-27 27h-61c-15 0-27-12-27-27v-48Z" fill="#BC6349"/>
+            <path d="M103 174h115v9H103z" fill="#AA543C"/>
+            <path d="M123 180v14" stroke="#F9EAD2" stroke-width="4" stroke-linecap="round"/>
+            <rect x="139" y="130" width="44" height="22" rx="5" fill="#EFDFC2"/>
+            <path d="M152 141h18" stroke="#B96A4D" stroke-width="2" stroke-linecap="round"/>
+            <path d="M92 155v68c0 19 12 33 29 38M230 155v68c0 19-12 33-29 38" stroke="#E29876" stroke-width="2" stroke-linecap="round"/>
+            <g transform="rotate(13 245 188)"><rect x="218" y="163" width="51" height="60" rx="8" fill="#F7F2E5"/><circle cx="244" cy="178" r="3" fill="#C9CFBF"/><path d="m233 198 7 6 13-15" stroke="#276A58" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></g>
+            <path d="m57 155 3-12m-8 5 13 3M269 133l4-11m-8 4 12 4" stroke="#AFB5A1" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          <div class="floating-note note-two"><span class="note-check">✓</span> Listo. Ya está en la mochila.</div>
+        </div>
+      </section>
+
+      <section id="workspace" class="workspace" aria-label="Preparar la mañana">
+        <div class="input-panel">
+          <div class="panel-title-row"><div class="section-kicker"><span class="step-number">01</span> LOS MENSAJES</div><button type="button" id="example-button" class="text-button">Probar ejemplo <span aria-hidden="true">↗</span></button></div>
+          <h2>Todo empieza con un copiar y pegar.</h2>
+          <p class="panel-intro">Pega los avisos que necesitas ordenar. Incluye quién los envió para poder distinguir una instrucción de una suposición.</p>
+          <form id="plan-form">
+            <div class="field-row">
+              <label class="field-label">Nombre o apodo <span class="field-optional">opcional</span><input id="child-name" name="childName" type="text" maxlength="60" placeholder="Por ejemplo, Leo" autocomplete="off"></label>
+              <label class="field-label">¿Para qué día?<input id="target-date" name="targetDate" type="date" required value="2026-10-13"></label>
+            </div>
+            <div class="textarea-label"><label class="field-label" for="group-messages">Mensajes del grupo</label><span id="character-count">0 / 12,000</span></div>
+            <textarea id="group-messages" name="text" rows="8" maxlength="12000" required placeholder="Profe Ana: Familias, mañana hay excursión. Hay que llevar…&#10;&#10;Mamá de Leo: ¿A qué hora llegamos?&#10;&#10;Profe Ana: Atención, actualizamos la hora…" aria-describedby="privacy-note"></textarea>
+            <p id="privacy-note" class="privacy-note"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="3.5" y="7" width="9" height="7" rx="2" stroke="currentColor"/><path d="M5.5 7V4a2.5 2.5 0 0 1 5 0v3" stroke="currentColor"/></svg> Pega sólo lo necesario. Puedes quitar nombres y teléfonos.</p>
+            <div id="input-mode" class="input-mode">Tus mensajes necesitan conexión con Amazon Bedrock.</div>
+            <button id="submit-button" type="submit" class="primary-button"><span id="submit-label">Dejar lista la mañana</span><span class="button-arrow" aria-hidden="true">→</span></button>
+          </form>
+          <p id="form-error" class="form-error" role="alert" hidden></p>
+          <div id="correction-prompt" class="correction-prompt" hidden><div><strong>Un momento. Llegó otro mensaje.</strong><p>La docente cambió la hora y confirmó la gorra.</p></div><button id="correction-button" class="secondary-button" type="button">Aplicar corrección <span aria-hidden="true">↻</span></button></div>
+          <div class="input-footnote"><span>Hecho para ayudarte a revisar.</span><span>La última palabra sigue siendo tuya.</span></div>
+        </div>
+
+        <div class="output-panel">
+          <div class="panel-title-row"><div class="section-kicker"><span class="step-number">02</span> LA MAÑANA, EN ORDEN</div><span id="result-mode" class="mode-badge" hidden>Demo guiada · mensajes ficticios</span></div>
+          <div id="empty-state" class="empty-state">
+            <div class="empty-illustration" aria-hidden="true"><div class="paper-card"><span class="paper-line short"></span><span class="paper-check">✓</span><span class="paper-line"></span><span class="paper-check">✓</span><span class="paper-line"></span><span class="paper-check faded">✓</span><span class="paper-line"></span></div><span class="paper-star">✳</span></div>
+            <h2>Una mochila lista.<br>Una cosa menos.</h2>
+            <p>Tu lista aparecerá aquí, con la hora clara,<br>las dudas separadas y cada aviso a un toque.</p>
+            <button id="empty-example-button" class="text-button" type="button">Mira cómo funciona con un ejemplo <span aria-hidden="true">→</span></button>
+            <div class="empty-preview"><span>01 &nbsp; Pega</span><i></i><span>02 &nbsp; Revisa</span><i></i><span>03 &nbsp; Respira</span></div>
+          </div>
+          <div id="loading-state" class="loading-state" hidden role="status"><div class="loading-spinner"></div><h2>Vamos a ordenar esto.</h2><p>Revisando avisos, fechas y posibles correcciones…</p></div>
+          <div id="result" hidden></div>
+        </div>
+      </section>
+      <section class="principles" aria-label="Cómo te ayuda MOCHILA"><p><span>↳</span> <strong>“¿De dónde salió?”</strong> Toca la fuente y lee el aviso exacto.</p><p><span>↻</span> <strong>“Cambiaron la hora.”</strong> Lo nuevo queda a la vista.</p><p><span>♡</span> <strong>“Yo preparo mi mochila.”</strong> Una lista también para peques.</p></section>
+    </main>
+    <footer class="site-footer"><span>mochila. <span>Menos pendiente. Más presente.</span></span><a href="#workspace">Deja lista tu mañana <span aria-hidden="true">↑</span></a></footer>
+  </div>
+  <dialog id="evidence-dialog" class="evidence-dialog" aria-labelledby="evidence-title"><div class="dialog-head"><span class="section-kicker">LA FUENTE, TAL CUAL</span><button id="close-evidence" class="icon-button" type="button" aria-label="Cerrar mensaje">×</button></div><h2 id="evidence-title">El aviso original</h2><div id="evidence-content"></div><p class="dialog-footnote">MOCHILA muestra el texto que pegaste para que puedas comprobarlo.</p></dialog>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
