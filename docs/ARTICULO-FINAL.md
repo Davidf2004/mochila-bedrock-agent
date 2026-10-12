@@ -52,11 +52,11 @@ Ya existen productos en este espacio. [Dobbie AI](https://dobbieai.com/) present
 
 ## Prueba de funcionamiento
 
-La captura de MOCHILA incluida en este artículo muestra una ejecución reproducible con mensajes ficticios. El recorrido presenta el cambio de llegada de 8:15 a 7:45, abre ambos avisos como evidencia, conserva los objetos ya marcados y permite pasar a «Lo preparo yo» sin ocultar las responsabilidades pendientes del adulto.
+La [demo pública de MOCHILA](https://mochila-bedrock-agent.netlify.app) muestra una ejecución reproducible con mensajes ficticios. El recorrido presenta el cambio de llegada de 8:15 a 7:45, abre ambos avisos como evidencia, conserva los objetos ya marcados y permite pasar a «Lo preparo yo» sin ocultar las responsabilidades pendientes del adulto. El [código fuente y las instrucciones](https://github.com/Davidf2004/mochila-bedrock-agent) también están disponibles.
 
 En la prueba real del 11 de octubre utilicé tres mensajes distintos de los de la demo: un aviso de entrada a las 8:10, una especulación de un familiar sobre las 8:30 y una corrección oficial a las 7:50. El agente mostró el cambio de 8:10 a 7:50, mantuvo la gorra como opcional y creó acciones para la botella, la playera y el permiso firmado. La interfaz identificó el resultado como «Generado con Amazon Bedrock».
 
-La ejecución también dejó dos límites visibles: el modelo citó más mensajes de los necesarios en algunos objetos y formuló una pregunta cautelosa sobre una hora que ya tenía corrección oficial. Afiné la instrucción para desalentar ambas conductas, pero mantengo la revisión humana y las fuentes visibles porque una validación estructural no prueba por sí sola que cada conclusión sea correcta. El enlace público permite que los evaluadores repitan el recorrido completo de la demo.
+La ejecución también dejó dos límites visibles: el modelo citó más mensajes de los necesarios en algunos objetos y formuló una pregunta cautelosa sobre una hora que ya tenía corrección oficial. Afiné la instrucción para desalentar ambas conductas, pero mantengo la revisión humana y las fuentes visibles porque una validación estructural no prueba por sí sola que cada conclusión sea correcta. La demo pública permite que los evaluadores repitan el recorrido completo.
 
 El criterio para dar esta primera versión por terminada es sencillo: una persona debe poder pasar de avisos dispersos a un plan revisable, entender qué cambió y saber quién prepara cada cosa. Si conseguimos que ese momento sea claro y agradable, tendremos una buena razón para construir la siguiente versión.
 
